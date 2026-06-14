@@ -8,23 +8,35 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
+Sometimes user attempts are not tracked or recorded in the attempt history. Additionally, pressing Enter does not submit a guess as expected. Users must click the "Submit Guess" button, but even then, attempts are not always counted correctly.
+
+I also noticed that the score displayed on the scoreboard does not accurately match the final score shown when the game is completed.
+
 **Bug Reproduction Log**
 
 Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Guess of "9" | The number 9 should be logged in the attempt history. | The number 9 is not logged, and the program waits for another number to be entered. | None |
+| Guess of 1 | The secret number is 59. I expect the hint to tell me to guess higher. | The hint incorrectly says "Lower." | None |
+| Guess of 89 | The secret number is 86. I expect the hint to tell me to guess lower. | The hint incorrectly says "Higher." | None |
+| Guess of 100 on "Easy" level | The guess is outside the valid range and should be rejected. | The game tells me to guess lower. | None |
 
 ---
 
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+Claude Code
+
+
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+
+
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+
+
 
 ---
 
