@@ -29,26 +29,34 @@ It wrote the code, ran away, and now the game is unplayable.
 - [ ] Detail which bugs you found.
 - [ ] Explain what fixes you applied.
 
+The purpose of the game is to guess the secret number. Per game, the user gets 8 attempts. There is 3 level of difficuly: one difficult, medium, or easy. Depending on the level of diffculty will determine the range of the secret number. For example, if the difficulty level is set to diffcult, then the secret number can range from 1 to 100 where as easy is 1 to 20. For each guess, the game will provide a hint to assist you with guessing closer to the secret number til correct. 
+
+I focused on 2 specific bugs:
+1. Number of Attempts starting from 1 instead of 0
+The attempts counter in app.py was set to 1 at the start of each game session. This meant the game behaved as though the player had already used one attempt before making any guess. The counter was off by one from the very beginning. I fixed this by changing the initial value to 0, so the counter only increments after the player actually submits a guess.
+
+2. Incorrect Hints
+When testing the game, I noticed the hints were backwards. For example, guessing 1 when the secret was 59 showed a "Lower" hint, and guessing 89 when the secret was 86 showed a "Higher" hint. The logic for returning outcomes was inverted. I fixed this by correcting the comparison logic in check_guess inside logic_utils.py so that guess > secret correctly returns "Too High" with a "go lower" message, and guess < secret correctly returns "Too Low" with a "go higher" message.
+
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Set your difficulty level by choosing between easy, normal, hard
+2. Once the difficulty level is set, you have 8 attempts to guess the secret number
+3. Enter a guess in the text field and click "Submit Guess." The game will provide a hint for every guess you enter. 
+4. Submit a guess until all attempts have run out.
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
-
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+test/test_game_logic.py::test_winning_guess PASSED                                                                                                                                    [ 14%]
+test/test_game_logic.py::test_guess_too_high PASSED                                                                                                                                   [ 28%]
+test/test_game_logic.py::test_guess_too_low PASSED                                                                                                                                    [ 42%]
+test/test_game_logic.py::test_check_guess_win_with_string_secret PASSED                                                                                                               [ 57%]
+test/test_game_logic.py::test_check_guess_too_high_with_string_secret PASSED                                                                                                          [ 71%]
+test/test_game_logic.py::test_check_guess_too_low_with_string_secret PASSED                                                                                                           [ 85%]
+test/test_game_logic.py::test_attempts_initial_value_is_zero PASSED                                                                                                                   [100%]
+===================================================================================== 7 passed in 0.01s =====================================================================================
 ```
-
-## 🚀 Stretch Features
-
-- [ ] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
