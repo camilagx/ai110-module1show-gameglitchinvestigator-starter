@@ -11,8 +11,8 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 🛠️ Setup
 
-1. Install dependencies: `pip install -r requirements.txt`
-2. Run the broken app: `python -m streamlit run app.py`
+1. Install dependencies: `pip3 install -r requirements.txt`
+2. Run the broken app: `python3 -m streamlit run app.py`
 
 ## 🕵️‍♂️ Your Mission
 
@@ -20,7 +20,7 @@ It wrote the code, ran away, and now the game is unplayable.
 2. **Find the State Bug.** Why does the secret number change every time you click "Submit"? Ask ChatGPT: *"How do I keep a variable from resetting in Streamlit when I click a button?"*
 3. **Fix the Logic.** The hints ("Higher/Lower") are wrong. Fix them.
 4. **Refactor & Test.** - Move the logic into `logic_utils.py`.
-   - Run `pytest` in your terminal.
+   - Run `python3 -m  pytest test/test_game_logic.py -v` in your terminal.
    - Keep fixing until all tests pass!
 
 ## 📝 Document Your Experience

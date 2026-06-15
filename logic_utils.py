@@ -21,6 +21,8 @@ def check_guess(guess, secret):
     if guess == secret:
         return "Win", "🎉 Correct!"
 
+# FIXME: Logic breasks here. Hint displayed to the user is switched.
+# FIX: When guess is greater than secret, the string returned should be "Too High, Go Lower" and vise versa when the guess is less than the secret.
     try:
         if guess > secret:
             return "Too High", "Go 📉 LOWER!"
@@ -28,6 +30,8 @@ def check_guess(guess, secret):
             return "Too Low", "📈 Go HIGHER!"
     except TypeError:
         # secret may be passed as a str; convert both to int for numeric comparison
+        # FIXME: Logic breasks here. Even numbers are converted to a string. Thus, both the guess and the secret are compared lexiographically instead of numerically.
+        # FIX: Both guess and secret should be converted to int before comparison. This ensures that the comparison is accurate and will provide the correct hint to the user.
         g = int(guess)
         s = int(secret)
         if g == s:

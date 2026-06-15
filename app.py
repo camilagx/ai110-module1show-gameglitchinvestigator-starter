@@ -30,8 +30,6 @@ def parse_guess(raw: str):
     return True, value, None
 
 
-
-
 def update_score(current_score: int, outcome: str, attempt_number: int):
     if outcome == "Win":
         points = 100 - 10 * (attempt_number + 1)
@@ -77,7 +75,8 @@ st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
-# FIXME: The attempts starting value needs to be corrected to 0 instead of 1
+# FIXME: Logic breasks here
+# FIX: The attempts starting value needs to be corrected to 0 instead of 1
 if "attempts" not in st.session_state:
     st.session_state.attempts = 0
 
@@ -146,10 +145,10 @@ if submit:
         else:
             secret = st.session_state.secret
 
-        outcome, message = check_guess(guess_int, secret)
+        outcome, hint_message = check_guess(guess_int, secret)
 
         if show_hint:
-            st.warning(message)
+            st.warning(hint_message)
 
         st.session_state.score = update_score(
             current_score=st.session_state.score,
